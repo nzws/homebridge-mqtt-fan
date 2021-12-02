@@ -19,7 +19,7 @@ npm install --global @nzws/homebridge-mqtt-fan
     "password": ""
   },
   "degrees": {
-    "off": [0],
+    "off": 0,
     "on": [
       12,
       24

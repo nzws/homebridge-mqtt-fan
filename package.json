@@ -1,7 +1,7 @@
 {
   "displayName": "Homemade MQTT Fan Control Plugin",
   "name": "@nzws/homebridge-mqtt-fan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Homebridge Plugin for homemade fan control created with mqtt",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -21,7 +21,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/**.ts --max-warnings=0",
-    "watch": "npm run build && npm link && nodemon",
+    "watch": "nodemon",
     "build": "rimraf ./dist && tsc",
     "prepublishOnly": "npm run lint && npm run build"
   },

@@ -19,6 +19,15 @@ services:
     volumes:
       - ./volumes/homebridge:/homebridge
       - ./:/home/homebridge/plugin
+    command:
+      - /bin/bash
+      - -c
+      - |
+        cd /home/homebridge/plugin
+        npm install
+        npm run build
+        sudo npm link
+        npm run watch
 
 networks:
   bridge:

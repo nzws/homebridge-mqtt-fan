@@ -91,19 +91,27 @@ class MQTTFan {
   }
 
   handleActiveSet(value) {
-    const { ACTIVE } = this.Characteristic.Active;
+    try {
+      const { ACTIVE } = this.Characteristic.Active;
 
-    this.updateStatus(value === ACTIVE);
+      this.updateStatus(value === ACTIVE);
+    } catch (e) {
+      this.log.error('handleActiveSet', e);
+    }
   }
 
   handleRotationSpeedSet(value) {
-    this.updateStatus(this.currentActive, this.getPercentToLevel(value));
+    try {
+      this.updateStatus(this.currentActive, this.getPercentToLevel(value));
+    } catch (e) {
+      this.log.error('handleRotationSpeedSet', e);
+    }
   }
 
   private updateStatus(nextActive = this.currentActive, nextSpeed = this.currentSpeed): void {
     const { degrees: { off, on } } = this.config;
 
-    const degree = nextActive ? on[nextSpeed + 1] : off;
+    const degree = nextActive ? on[nextSpeed - 1] : off;
 
     this.client.publish('update', degree.toString());
 
